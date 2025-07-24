@@ -1,0 +1,29 @@
+<div class="container cart-item-holder">
+    <div class="choose-all">
+        <input type="checkbox" name="choose-all" id="choose-all" (change)="selectAll()" [checked]="selectedAll">
+        <label for="choose-all">CHỌN TẤT CẢ ({{totalItems}})</label>
+    </div>
+    <div class="cart-item d-flex flex-wrap align-items-center" *ngFor="let p of cartItems; let i = index">
+        <div class="image-holder d-flex align-items-center">
+            <input type="checkbox" (change)="selectItem(i)" [checked]="selectedItems[i]">
+            <div class="product-image">
+                <img src="{{p.product.image}}" alt="">
+            </div>
+        </div>
+        <div class="name-price-trash d-flex flex-grow-1">
+            <div class="name-price">
+                <div class="product-name">{{p.product.productName}}</div>
+                <div class="product-price">{{formatCurrency(p.itemPrice)}}</div>
+            </div>
+            <div class="trash-can" (click)="removeItem(i)"><i class="bi bi-trash-fill"></i></div>   
+        </div>
+    </div>
+</div>
+<hr class="container">
+<div class="total-button container d-flex ">
+    <div class="sum-price">
+        <div class="sum-price-text">TỔNG TIỀN</div>
+        <div class="sum-price-value">{{formatCurrency(totalPrice)}}</div>
+    </div>
+    <button [disabled]="canBook" (click)="bookService()">ĐẶT LỊCH NGAY</button>
+</div>

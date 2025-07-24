@@ -1,0 +1,154 @@
+img {
+    width: 200px;
+    height: 200px;
+}
+hr {
+    width: 80%;
+}
+.image-holder>div {
+    padding: 10px;
+}
+.product-name {
+    font-family: Inter Tight;
+    font-weight: bold
+}
+.product-price { 
+    font-family: Inter Tight;
+}
+.name-price-trash {
+    width: 70%;
+}
+.name-price {
+    margin-right: 10px;
+    width: 40%;
+}
+.cart-item {
+    margin-bottom: 20px;
+    justify-content: space-between;
+    width: 100%;
+    flex-basis: 100%;
+}
+.cart-item-holder{ 
+    width: 80%;
+    background-color: #FFF9F3;
+    border-radius: 10px;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+}
+i {
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+label {
+    color: #FE9312;
+    font-weight: bold;
+    font-family: Montserrat;
+    font-size: 1.2rem;
+}
+.total-button {
+    width: 80%;
+    justify-content: space-between;
+}
+.sum-price {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 70%;
+    padding: 10px;
+    background-color: #FFF9F3;
+    box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+    margin-left: -10px;
+    font-family: Montserrat;
+    font-weight: bold;
+    color: #FE9312;
+    font-size: 1.2rem;
+}
+.sum-price-text {
+    flex:1;
+    font-family: Montserrat;
+    font-weight: bold;
+    color: #FE9312;
+    font-size: 1.2rem;
+}
+button {
+    border: none;
+    background-color: #FE9312;
+    width: 30%;
+    border-radius: 10px;
+    color: #FFF9F3;
+    font-weight: bold;
+    font-family: Montserrat;
+    font-size: 1.2rem;
+    margin-right: -10px;
+    cursor: pointer;
+    margin: 10px;
+    min-height: 40px;
+}
+button:hover{
+    background-color: #FFF9F3;
+    border-color: #FE9312;
+    border: 3px solid #FE9312;
+    color: #FE9312;
+}
+button:disabled {
+    background-color: #FE9312;
+    border: none;
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+button:disabled:hover {
+    background-color: #FE9312;
+    color: #FFF9F3;
+    border: none;
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+input[type="checkbox"] {
+    appearance: none;
+    cursor: pointer;
+    border: 2px solid #FE9312;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+input[type="checkbox"]:checked {
+    background-color: #FE9312;
+    position: relative;
+}
+input[type="checkbox"]:checked::before {
+    content: "✓";
+    color: #FFF9F3;
+    font-size: 1.2rem;
+    font-weight: bold;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.choose-all {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 5px;
+}
+.choose-all label {
+    padding: 5px;
+}
+@media (max-width: 768px) {
+    img {
+        width: 100px;
+        height: 100px;
+    }
+    .name-price-trash {
+        flex: 1
+    }
+    .name-price {
+        flex: 1
+    }
+    .trash-can {
+        display: flex;
+        align-items: center;
+    }
+    button, .sum-price-text, .sum-price { 
+        font-size: 1rem;
+    }
+}

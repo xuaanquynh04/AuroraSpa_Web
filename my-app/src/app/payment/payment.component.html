@@ -1,0 +1,47 @@
+<div class="container point-container">
+    <div class="point-title">SỬ DỤNG ĐIỂM THƯỞNG AURORA</div>
+    <div class="point-holder d-flex justify-content-between">
+        <input type="checkbox" name="point" id="point">
+        <div class="point-text">Điểm khả dụng</div>
+        <div class="point-amount">0</div>
+    </div>
+</div>
+<form [formGroup]="paymentForm" class="pay-method-container container">
+    <div class="pay-method-title">PHƯƠNG THỨC THANH TOÁN <sup>*</sup></div>
+    <div class="pay-cash-container d-flex justify-content-between align-items-center">
+        <i class="bi bi-cash"></i>
+        <label class="method-name" for="cash">Tiền mặt</label>
+        <input type="radio" name="paymentMethod" id="cash" value="cash" formControlName="paymentMethod" (change)="validatePaymentMethod()">
+    </div>
+    <div class="pay-cash-container d-flex justify-content-between align-items-center">
+        <i class="bi bi-qr-code"></i>
+        <label class="method-name" for="qr">Mã QR</label>
+        <input formControlName="paymentMethod" type="radio" name="paymentMethod" id="qr" value="qr" (change)="validatePaymentMethod()">
+    </div>
+</form>
+<div class="payment-sum container">
+    <div class="payment-sum-title">CHI TIẾT THANH TOÁN</div>
+    <div class="sum-order d-flex justify-content-between">
+        <div class="sum-order-text">Tổng giá trị đơn hàng</div>
+        <div class="sum-order-amt" *ngIf="bookingData.total">{{formatCurrency(bookingData.total)}}</div>
+    </div>
+    <div class="discount d-flex justify-content-between">
+        <div class="sum-order-text">Giảm giá</div>
+        <div class="sum-order-amt">{{discount}}</div>
+    </div>
+    <div class="final-sum d-flex justify-content-between">
+        <div class="sum-order-text">Tổng thanh toán</div>
+        <div class="sum-order-amt">{{formatCurrency(bookingData.total - discount)}}</div>
+    </div>
+</div>
+<div class="button-end container">
+    <div class="button-end container d-flex justify-content-around">
+        <button class="back" [routerLink]="['/booking']">QUAY LẠI</button>
+        <button class="confirm" [disabled]="buttonDisabled" (click)="confirmPayment()">XÁC NHẬN</button>
+    </div>
+</div>
+<div class="overlay" *ngIf="showPopup" (click)="closePopup()">
+    <div class="popup-success d-flex justify-content-center align-items-center flex-column" *ngIf="showPopup">
+        <div class="title">THANH TOÁN THÀNH CÔNG</div>
+    </div>
+</div>

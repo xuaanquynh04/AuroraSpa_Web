@@ -1,0 +1,70 @@
+<div class="mt-4 container-fluid">
+    <div class="row">
+        <div class="col-xl-4 d-flex flex-column">
+            <div class="container rounded-3 mb-3 flex-column align-items-center">
+                <div class="title py-3">ĐĂNG NHẬP</div>
+                <form class="w-100" [formGroup]="signin_form" (ngSubmit)="onSubmit()">
+                   
+                    <div class="mb-3">
+                        <label for="account" class="form-label">Email/Số điện thoại <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" id="account" placeholder="Nhập số điện thoại hoặc email" formControlName="account">
+                        <div class="text-danger" *ngIf="signin_form.get('account')?.errors?.['required'] && signin_form.get('account')?.touched">
+                          Vui lòng nhập email hoặc số điện thoại
+                        </div>
+                    </div>
+
+
+                    <div class="mb-3">
+                      <label for="password" class="form-label">Mật khẩu <span class="text-danger">*</span></label>
+                      <input type="password" class="form-control bgcolor" id="password" placeholder="Nhập mật khẩu" formControlName="password">
+                      <div class="text-danger" *ngIf="signin_form.get('password')?.errors?.['required'] && signin_form.get('password')?.touched">
+                        Vui lòng nhập mật khẩu
+                      </div>
+                    </div>
+                   
+                    <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn mx-2 button1" value="register">ĐĂNG NHẬP</button>
+                    <button type="reset" class="btn mx-2 button1" value="cancel" (click)="navigateToHome()">HỦY</button>
+                    </div>
+                   
+                </form>
+                <div class="text-center py-2">
+                    <a href="http://localhost:4200/sign-up" class="text">Quên mật khẩu</a>
+                </div>
+            <div id="extra" class=" mb-3">
+               
+                    <div class="d-flex align-items-center">
+                    <hr class="flex-grow-1 line">
+                    <span class="mx-2 text-muted">Hoặc</span>
+                    <hr class="flex-grow-1 line">
+                    </div>
+                   
+                    <div class="d-flex justify-content-between">
+                        <button class="btn mx-2 button2">
+                        <img src="assets/logoFB.png" alt="Facebook" width="26" height="26">
+                        Facebook
+                        </button>
+                       
+                        <button class="btn mx-2 button2">
+                        <img src="assets/logoGG.png" alt="Google Logo" width="25" height="25">
+                        Google
+                        </button>
+                    </div>
+            </div>  
+        </div>
+        </div>
+
+
+        <div class="col-xl-8 d-flex flex-column align-items-center justify-content-center mb-3">
+            <div class=call>Hãy trở thành thành viên của AURORA</div>
+            <button class="btn mx-2 button1 mt-3" (click)="navigateToSignUp()">ĐĂNG KÍ NGAY</button>
+        </div>
+    </div>
+</div>
+
+
+<div class="overlay" *ngIf="showSuccess" >
+    <div class="popup-success">
+    <p>ĐĂNG NHẬP THÀNH CÔNG</p>
+  </div>
+</div>

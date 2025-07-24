@@ -1,0 +1,42 @@
+.footer-content>div{
+    overflow-wrap: break-word;
+}
+.footer-content{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    min-width: 250px;
+    font-size: 16px;
+    font-family: Inter Tight;
+    color: #FFF9F3;
+}
+.footer-1-content {
+    padding-top: 5px;
+}
+.footer-container {
+    flex-wrap: wrap;
+    flex-basis: 25%;
+    justify-content: space-around;
+    background-color: #3B5635;
+}
+.footer-title {
+    font-size: 20px;
+    font-family: Montserrat;
+    font-weight: bold;
+    color: #FE9312;
+    margin-top: 10px;
+    margin-bottom: 0px;
+}
+.footer-nail {
+    padding-left: 10px;
+}
+.footer-social>a{
+    margin-right: 3vw;
+    text-decoration: none;
+    color: #FFF9F3;
+}
+.footer-social {
+    font-size: 1.5rem;
+    color: #FFF9F3;
+}

@@ -1,0 +1,75 @@
+<div class="container">
+    <form [formGroup] = "bookForm">
+        <div class="basic-info-container container">
+            <div class="basic-info-title">THÔNG TIN ĐẶT HẸN</div>
+            <div class="name-phone d-flex justify-content-between">
+                <div class="name">
+                    <label for="name" class="form-label">Họ và tên <sup>*</sup></label>
+                    <input type="text" class="form-control" id="name" placeholder="Họ và tên" name="name" formControlName="customerName">
+                    <div class="errormessage" *ngIf="bookForm.get('customerName')?.touched && bookForm.get('customerName')?.errors">
+                        <span *ngIf="bookForm.get('customerName')?.errors?.['required']" class="warn">Vui lòng nhập họ tên</span>
+                    </div>
+                </div>
+                <div class="phone">
+                    <label for="phone" class="form-label">Số điện thoại <sup>*</sup></label>
+                    <input type="text" class="form-control" id="phone" placeholder="Số điện thoại" name="phone" formControlName="phone">
+                    <div class="errormessage" *ngIf="bookForm.get('phone')?.touched && bookForm.get('phone')?.errors">
+                        <span *ngIf="bookForm.get('phone')?.errors?.['required']" class="warn">Vui lòng nhập số điện thoại</span>
+                    </div>
+                </div>
+            </div>
+            <div class="bookdate">
+                <label for="bookdate" class="form-label">Ngày hẹn <sup>*</sup></label>
+                <input type="date" formControlName="bookingDate" class="form-control" name="bookdate" id="bookdate">
+                <div class="errormessage" *ngIf="bookForm.get('bookingDate')?.touched && bookForm.get('bookingDate')?.errors">
+                    <span *ngIf="bookForm.get('bookingDate')?.errors?.['required']" class="warn">Vui lòng chọn ngày hẹn</span>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="container service-list">
+        <div class="services-list-title">DANH SÁCH DỊCH VỤ</div>
+        <div class="service-container" *ngFor="let p of selectedServices; let i = index">
+            <div class="card d-flex flex-row justify-content-between">
+                <div class="image-holder">
+                    <img src="{{p.product.image}}" alt="">
+                </div>
+                <div class="service-info d-flex flex-column align-items-start">
+                    <div class="service-name">{{p.product.productName}}</div>
+                    <div class="selected-time-container d-flex flex-row justify-content-between">
+                        <div class="selected-time-title">Giờ bắt đầu:</div>
+                        <div class="selected-time">
+                            {{selectedTimes[p.product._id] | date:'HH:mm'}}
+                        </div>
+                    </div>
+                    <div class="service-price">
+                        {{formatCurrency(p.itemPrice)}}
+                    </div>
+                    <button class="btn-select-time" (click)="getPopup(p.product._id)">CHỌN GIỜ</button>
+                </div>
+                <div class="time-selection-popup container" *ngIf="showPopup[p.product._id]">
+                    <div class="close-popup d-flex justify-content-end">
+                        <i class="bi bi-x-lg" (click)="closePopup(p.product._id)"></i>
+                    </div>
+                    <div class="slots">
+                        <div class="row row-cols-4 row-slot justify-content-between">
+                            <button *ngFor="let s of timeslots" class="col btn-slot" (click)="selectTime(s, p.product._id)" [class.selected]="isTimeSelected(s, p.product._id)">{{s | date:'HH:mm'}}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr class="container">
+    <div class="total-price-container container d-flex justify-content-between">
+        <div class="total-price-title">TỔNG TIỀN</div>
+        <div class="total-price">{{formatCurrency(total)}}</div>
+    </div>
+    <div class="button-end container d-flex justify-content-around">
+        <button class="back" [routerLink]="['/cart']">QUAY LẠI</button>
+        <button class="pay" (click)="updateBookingData()" [disabled]="buttonDisabled">THANH TOÁN</button>
+    </div>
+</div>
+
+
+

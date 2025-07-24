@@ -1,0 +1,115 @@
+.header-info {
+    background-color: #3B5635;
+
+ }
+
+.header-group{
+    background-color: #3B5635;
+    padding: 5px 20px 5px 20px;
+    font-family: 'Montserrat';
+    font-size: 20px;
+    font-weight: bold;
+}
+nav ul li a{
+    text-decoration: none;
+    color: #FFF9F3;
+}
+div nav>ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0px;
+    padding: 0px;
+}
+
+div>nav>ul>li:hover {
+    background-color: #FE9312;
+}
+div>nav>ul>li>ul {
+    list-style: none;
+    position: absolute;
+    margin: 0px;
+    padding: 0px;
+    background-color: #3B5635;
+    margin-top: 5px;
+    margin-left: -20px;
+    display: none;
+}
+div>nav>ul>li:hover>ul {
+    display: block;
+}
+
+div>nav>ul>li>ul>li {
+    padding: 5px;
+}
+div>nav>ul>li>ul>li:hover {
+    background-color: #FE9312;
+}
+.header-container {
+    height: 10vh;
+    background-color: #3B5635;
+    align-content: center;
+    padding: 10px;
+    object-fit: contain;
+    border-bottom: #FFF9F3 solid 1px;
+
+  
+}
+.logo-container {
+    height: 80%;
+    object-fit: contain;
+}
+@media (max-width: 768px) {
+    .logo-container {
+        display: none; 
+    }
+}
+.logo-container>div, .logo-container img, .log-container a {
+    height: 100%;
+    aspect-ratio: 4/1;
+}
+.btn {
+    background-color:gainsboro;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+#search-input {
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    font-family: Inter Tight;
+}
+.logo-container>div, .logo-container a {
+    object-fit: fill;
+}
+
+.search-bar {
+    padding-right: 5vh;
+    display: block;
+}
+@media (max-width: 768px) {
+    .search-bar {
+        width: 80%;
+    }
+}
+.icon-container {
+    height: 50%;
+    flex-basis: 15vh;
+    justify-content: space-between;
+    align-items: center;
+    display: block;
+}
+.icon-container a, .icon-container i {
+    color: #FFF9F3;
+}
+i {
+   font-size: 1.5em;
+}
+.header{
+    top: 0;
+    position: fixed; 
+    z-index: 100;
+    width: 100%;
+}

@@ -1,0 +1,84 @@
+<div class="page-name px-3 text-capitalize">Sản phẩm/{{getDisplayProductType(product?.productType)}}/{{product?.productName}}</div>
+<div class="container-fluid d-flex flex-row flex-wrap ">
+    <div class="product-image">
+        <img [src]="product?.image" [alt]="product?.productName">
+    </div>
+    <div class="d-flex flex-column flex-wrap flex-grow-1" id="product-info">
+         <!-- Thông tin sản phẩm -->
+        <div class="product-info">
+            <h2>{{product?.productName}}</h2>
+            <p>Mã dịch vụ: {{product?._id}}</p>
+            <p class="product-description d-flex flex-wrap"> <span style="font-weight: bold; color: #3B5635;;">Mô tả dịch vụ: </span>{{product?.description}} </p>
+            <div class="rating">
+                {{product?.rating}}.0
+                <i class="bi bi-star-fill" *ngFor="let star of [1,2,3,4,5]"></i>
+            </div>
+        </div>
+        <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+            <!-- Phần tùy chọn động -->
+            <div *ngFor="let cus of customizes" style="font-family: Inter Tight;">
+                <h3>
+                    {{cus.name}}
+                    <span class="required" *ngIf="cus.required" style="color: #FE9312 ;">*</span>
+                </h3>
+                
+                <!-- Radio group -->
+                <div *ngIf="cus.optionType === 'radio'" class="radio-group">
+                    <div *ngFor="let opt of cus.options" class="option">
+                        <input type="radio"
+                               [id]="cus._id + '_' + opt.value"
+                               [name]="cus._id"
+                               [value]="opt.value"
+                               [formControlName]="cus._id">
+                        <label [for]="cus._id + '_' + opt.value">{{opt.name}}</label>
+                        <span *ngIf="opt.addPrice > 0">+{{formatCurrency(opt.addPrice)}}</span>
+                    </div>
+                </div>
+    
+                <!-- Checkbox group -->
+                <div *ngIf="cus.optionType === 'checkbox'" [formGroupName]="cus._id">
+                    <div *ngFor="let opt of cus.options" class="option">
+                        <input type="checkbox"
+                               [id]="cus._id + '_' + opt.value"
+                               [formControlName]="opt.value">
+                        <label [for]="cus._id + '_' + opt.value">{{opt.name}}</label>
+                        <span *ngIf="opt.addPrice > 0">+{{formatCurrency(opt.addPrice)}}</span>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <div class="totalprice d-flex flex-row justify-content-between">
+                <div class="px-3">
+                    TỔNG
+                </div>
+                <div class="px-3">{{formatCurrency(sum)}}</div>
+            </div>
+            <div class="d-flex flex-row justify-content-center">
+                <button class="flex-1" type="submit" [disabled]="productForm.invalid" (click)="addToCart()">
+                    THÊM VÀO GIỎ HÀNG
+                </button>
+                <button class="flex-1" type="submit" [disabled]="productForm.invalid">
+                    ĐẶT LỊCH NGAY   
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Đánh giá từ khách hàng -->
+ <div class="feedback-block overflow-auto container-fluid px-5">
+    <div class="feedback-container" *ngFor="let f of product?.feedback">
+        <div class="feedback-content">
+          <h5 class="fw-bold">{{ f.customerID.slice(0, 6) + '...' + f.customerID.slice(-4) }}</h5>
+          <div class="icon-feedback">
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+          </div>
+          <p>{{f.content}}</p>
+          <p>{{f.date| date:'dd/MM/yyyy' }}</p>
+        </div>
+      </div>
+ </div>

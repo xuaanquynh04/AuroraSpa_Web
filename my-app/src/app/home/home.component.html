@@ -1,0 +1,101 @@
+<!-- Carousel -->
+<div id="Carousel" class="carousel slide" data-bs-ride="carousel">
+  <!-- Banner -->
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="../assets/banner_1.png" class="d-block w-100" alt="Banner 1" />
+    </div>
+    <div class="carousel-item">
+      <img src="../assets/banner_2.png" class="d-block w-100" alt="Banner 2" />
+    </div>
+    <div class="carousel-item">
+      <img src="../assets/banner_3.png" class="d-block w-100" alt="Banner 3" />
+    </div>
+    <div class="carousel-item">
+      <img src="../assets/banner_4.png" class="d-block w-100" alt="Banner 4" />
+    </div>
+  </div>
+<!-- Kiểm soát thao tác lướt -->
+<a href="#Carousel" class="carousel-control-prev" data-bs-slide="prev">
+  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+  <span class="sr-only"></span>
+</a>
+<a href="#Carousel" class="carousel-control-next" data-bs-slide="next">
+  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+  <span class="sr-only"></span>
+</a>
+</div>
+<!-- Các tính năng nổi bật -->
+<div class="container-fluid d-flex flex-wrap justify-content-center align-items-start ">
+    <div class="text-center icon-box">
+      <a routerLink="/product/nail" class="icon-link align-self-start">
+        <span class="icon-wrapper">
+          <i class="bi bi-stars" id="icon-nail-creation"></i>
+        </span></a>
+        <div class="icon-text">Sáng tạo nail</div>
+    </div>
+    <div class="text-center icon-box">
+      <a routerLink="/booking" class="icon-link align-self-start">
+        <span class="icon-wrapper">
+          <i class="bi bi-calendar-heart"></i>
+        </span></a>
+        <div class="icon-text">Đặt lịch</div>
+    </div>
+    <div class="text-center icon-box">
+      <a routerLink="/booking" class="icon-link">
+        <span class="icon-wrapper">
+          <i class="bi bi-search-heart"></i>
+        </span></a>
+        <div class="icon-text">Tra cứu lịch</div>
+    </div>
+    <div class="text-center icon-box">
+      <a routerLink="" class="icon-link">
+        <span class="icon-wrapper">
+          <i class="bi bi-gift"></i>
+        </span></a>
+      <div class="icon-text">Điểm thưởng</div>
+      
+    </div>
+</div>
+<!-- Dịch vụ nổi bật -->
+<div class="product px-5">
+<h1 class="fw-bold text-center">DỊCH VỤ NỔI BẬT</h1>
+<div class="container overflow-auto">
+  <div class="d-flex flex-wrap justify-content-between align-items-start">
+    <div class="product-container" *ngFor="let  p of products?.products">
+      <a [routerLink]="['/product', p.productType, p._id]" style="cursor: pointer">
+        <span><img src="{{p.image}}" alt="" /></span>
+        <p class="product-name">{{p.productName}}</p>
+        <div class="icon">
+          <i class="bi bi-star-fill"></i>
+          <i class="bi bi-star-fill"></i>
+          <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+            <i class="bi bi-star-fill"></i>
+          </div>
+          <p class="product-price">{{formatCurrency(p.price)}}</p>
+        </a>
+        <a [routerLink]="['/product', p.productType, p._id]" class="btn btn-primary"> Thêm vào giỏ hàng </a>
+        <br />
+        <a [routerLink]="['/product', p.productType, p._id]" class="btn btn-primary"> Đặt lịch ngay </a>
+      </div>
+</div>
+
+
+<!-- Đánh giá từ khách hàng -->
+<div class="feedback">
+  <h1>ĐÁNH GIÁ TỪ KHÁCH HÀNG</h1>
+  <div class="feedback-block overflow-auto">
+    <div class="feedback-container" *ngFor="let f of products?.feedback">
+      <div class="feedback-content">
+        <h5 class="fw-bold">{{ f.customerID.slice(0, 6) + '...' + f.customerID.slice(-4) }}</h5>
+        <div class="icon-feedback">
+          <i class="bi bi-star-fill"></i>
+          <i class="bi bi-star-fill"></i>
+          <i class="bi bi-star-fill"></i>
+          <i class="bi bi-star-fill"></i>
+          <i class="bi bi-star-fill"></i>
+        </div>
+        <p>{{f.content}}</p>
+      </div>
+    </div>
